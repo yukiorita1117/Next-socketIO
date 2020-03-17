@@ -4,7 +4,7 @@ import fetch from "isomorphic-unfetch";
 import useSocket from "../hooks/useSocket";
 import axios from "axios";
 
-export default function ChatOne(props) {
+export default function MainChat(props) {
   const [field, setField] = useState("");
   const [newMessage, setNewMessage] = useState(0);
   const [messages, setMessages] = useState(props.messages || []);
@@ -88,17 +88,23 @@ export default function ChatOne(props) {
               <Item key={result.id}>{`${result.inputText}`}</Item>
             ))}
           </ul>
-          {props.test}
+          {props.postArray.map(item => {
+            return item.title;
+          })}
         </div>
       </div>
     </main>
   );
 }
 
-ChatOne.getInitialProps = async () => {
+MainChat.getInitialProps = async () => {
   const response = await fetch("http://localhost:3000/messages/chat1");
   const messages = await response.json();
   const test = await "テスト";
+  const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
 
-  return { messages, test };
+  let postArray = [];
+  postArray = res.data;
+
+  return { messages, test, postArray };
 };

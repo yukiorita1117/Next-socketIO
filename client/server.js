@@ -27,13 +27,14 @@ io.on("connection", socket => {
   });
 });
 
-nextApp.prepare().then(() => {
-  // test
-  app.get("/api/test", (req, res) => {
-    console.log("ああああ");
-    res.send("テストだよ。");
-  });
+// test
+// 以下のようなことは別途serverを立てる必要あり？
+// app.get("/api/test", (req, res) => {
+//   console.log("ああああ");
+//   res.send("テストだよ。");
+// });
 
+nextApp.prepare().then(() => {
   app.get("/messages/:chat", (req, res) => {
     res.json(messages[req.params.chat]);
   });
