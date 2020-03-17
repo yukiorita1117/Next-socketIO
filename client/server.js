@@ -28,7 +28,7 @@ io.on("connection", socket => {
 });
 
 // test
-// 以下のようなことは別途serverを立てる必要あり？
+// 以下のようなことは別途serverを立てる必要あり
 // app.get("/api/test", (req, res) => {
 //   console.log("ああああ");
 //   res.send("テストだよ。");
